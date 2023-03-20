@@ -1,0 +1,27 @@
+.main-area {
+    background-color: #1c0933;
+    padding-top: 75px;
+    overflow: hidden;
+
+    .game-area {
+        background-color: #160b24;
+        border-radius: 4px;
+        width: 80%;
+        margin: auto;
+        margin-top: 20px;
+        display: flex;
+        align-items: flex-start;
+        height: calc(100vh - 100px);
+
+        .sidebar {
+            width: 300px;
+            background-color: #472175;
+            height: 100%;
+            position: relative;
+
+            .main-control {
+                padding: 15px;
+            }
+        }
+    }
+}
