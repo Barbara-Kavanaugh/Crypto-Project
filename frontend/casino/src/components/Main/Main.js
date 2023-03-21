@@ -15,7 +15,8 @@ const Main = () => {
                 </div>
                 <div className='input-group'>
                   <input type='number' />
-                  <div className='label'>
+                </div>
+                <div className='label'>
                     <span>Risk</span>
                   </div>
                   <div className='input-group'>
@@ -38,12 +39,11 @@ const Main = () => {
                       <option value='50'>50</option>
                     </select>
                   </div>
-                </div>
               </div>
             </div>
             <div className='form'>
               <div className='form-group'>
-                <button>Place Bet</button>
+                <button className='bet'>Place Bet</button>
               </div>
             </div>
           </div>
