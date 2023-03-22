@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
 .main-area {
     background: linear-gradient(30deg, #5516a1, #020005);
     padding-top: 75px;
@@ -12,6 +14,63 @@
         display: flex;
         align-items: flex-start;
         height: calc(100vh - 100px);
+
+        .gamebar {
+            width: calc(100vh - 300px);
+            height: 100%;
+
+            .gamebar-container {
+                height: 100%;
+                margin: auto;
+                margin-top: 40px;
+                position: relative;
+
+                span.marker {
+                    position: absolute;
+                    
+                    img {
+                        width: 25px;
+                        height: 48px;
+                    }
+                }
+
+                .temp {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+
+                    .wheel {
+                        width: 350px;
+                        height: 350px;
+                        background-color: #3e196d;
+                        border: 15px solid #2b1545;
+                        position: relative;
+                        overflow: hidden;
+                        transition: 5s;
+                        border-radius: 50%;
+
+                        .segment1 {
+                            height: 50%;
+                            width: 105px;
+                            position: absolute;
+                            clip-path: polygon(100% 0, 50% 100%, 0 0);
+                            transform: translateX(-50%);
+                            transform-origin: bottom;
+                            text-align: center;
+                            align-items: center;
+                            display: flex;
+                            justify-content: center;
+                            font-weight: bold;
+                            font-family: 'Merriweather', serif;
+                            font-size: 20px;
+                            color: black;
+                            left: 108px;
+                        }
+                    }
+                }
+            }
+        }
 
         .sidebar {
             width: 300px;

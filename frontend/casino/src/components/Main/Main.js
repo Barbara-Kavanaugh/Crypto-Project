@@ -1,7 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Main.scss';
+import { createWheel } from '../../utils/createWheel';
 
 const Main = () => {
+  const colorScheme= {
+    white: '#ffff',
+    gold: '#FFD700',
+    purple: '#984ad9',
+    darkGold: '#c79408',
+    warning: '#d40202'
+  }
+
+  const [wheel, setWheel]= useState([]);
+  const [risk, setRisk]= useState('Medium');
+  const [segment, setSegment]= useState('10');
+
+  const initialWheel = () => {
+    return createWheel(segment, risk, colorScheme);
+  }
+
+  useEffect(() => {
+    const wheelValue= initialWheel();
+    setWheel(wheelValue?.wheelData);
+  }, [segment, risk])
+
   return (
     <div className='main-area'>
       <div className='game-area'>
@@ -20,7 +42,7 @@ const Main = () => {
                     <span>Risk</span>
                   </div>
                   <div className='input-group'>
-                    <select name='' id=''>
+                    <select value={risk} onChange={(event) => setRisk(event.target.value)} id=''>
                       <option value='Low'>Low</option>
                       <option value='Medium'>Medium</option>
                       <option value='High'>High</option>
@@ -31,9 +53,8 @@ const Main = () => {
                     <span>Segment</span>
                   </div>
                   <div className='input-group'>
-                    <select name='' id=''>
+                    <select value={segment} onChange={(event) => setSegment(parseInt(event.target.value))} id=''>
                       <option value='10'>10</option>
-                      <option value='20'>20</option>
                       <option value='30'>30</option>
                       <option value='40'>40</option>
                       <option value='50'>50</option>
@@ -45,6 +66,18 @@ const Main = () => {
               <div className='form-group'>
                 <button className='bet'>Place Bet</button>
               </div>
+            </div>
+          </div>
+        </div>
+        <div className='gamebar'>
+          <div className='gamebar-container'>
+            <span className='marker'><img src='./marker.png' alt='marker'/></span>
+            <div className='temp'>
+              <div className='wheel'>
+                {
+                  [...wheel]
+                }
+              </div> 
             </div>
           </div>
         </div>
