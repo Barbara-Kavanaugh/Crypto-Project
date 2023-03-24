@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Main.scss';
 import { createWheel } from '../../utils/createWheel';
 
 const Main = () => {
+  const wheelRef= useRef()
+
   const colorScheme= {
     white: '#ffff',
     gold: '#FFD700',
@@ -14,6 +16,7 @@ const Main = () => {
   const [wheel, setWheel]= useState([]);
   const [risk, setRisk]= useState('Medium');
   const [segment, setSegment]= useState('10');
+  const [deg, setDeg]= useState(0);
 
   const initialWheel = () => {
     return createWheel(segment, risk, colorScheme);
@@ -22,7 +25,18 @@ const Main = () => {
   useEffect(() => {
     const wheelValue= initialWheel();
     setWheel(wheelValue?.wheelData);
-  }, [segment, risk])
+  }, [segment, risk]);
+
+  const startRotate= () => {
+    if (wheelRef.current) {
+      let randomDegree= Math.floor(800+ Math.random()* 1000);
+      const temp= randomDegree % 360;
+      randomDegree= randomDegree- (temp%(360/segment));
+      wheelRef.current.style.transition= 'all 3s';
+      wheelRef.current.style.transform= `rotate(${randomDegree}deg)`;
+      setDeg(randomDegree);
+    }
+  }
 
   return (
     <div className='main-area'>
@@ -33,7 +47,7 @@ const Main = () => {
               <div className='form-group'>
                 <div className='label'>
                   <span>Bet Amount</span>
-                  <span>100 ETH</span>
+                  <span>0.00055 ETH</span>
                 </div>
                 <div className='input-group'>
                   <input type='number' />
@@ -55,8 +69,8 @@ const Main = () => {
                   <div className='input-group'>
                     <select value={segment} onChange={(event) => setSegment(parseInt(event.target.value))} id=''>
                       <option value='10'>10</option>
+                      <option value='20'>20</option>
                       <option value='30'>30</option>
-                      <option value='40'>40</option>
                       <option value='50'>50</option>
                     </select>
                   </div>
@@ -64,7 +78,7 @@ const Main = () => {
             </div>
             <div className='form'>
               <div className='form-group'>
-                <button className='bet'>Place Bet</button>
+                <button onClick={startRotate} className='bet'>Place Bet</button>
               </div>
             </div>
           </div>
@@ -73,7 +87,7 @@ const Main = () => {
           <div className='gamebar-container'>
             <span className='marker'><img src='./marker.png' alt='marker'/></span>
             <div className='temp'>
-              <div className='wheel'>
+              <div ref={wheelRef} className='wheel'>
                 {
                   [...wheel]
                 }
