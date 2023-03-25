@@ -17,6 +17,7 @@ const Main = () => {
   const [risk, setRisk]= useState('Medium');
   const [segment, setSegment]= useState('10');
   const [deg, setDeg]= useState(0);
+  const [coordinate, setCoordinate]= useState("");
 
   const initialWheel = () => {
     return createWheel(segment, risk, colorScheme);
@@ -24,6 +25,7 @@ const Main = () => {
 
   useEffect(() => {
     const wheelValue= initialWheel();
+    setCoordinate(wheelValue.degree)
     setWheel(wheelValue?.wheelData);
   }, [segment, risk]);
 

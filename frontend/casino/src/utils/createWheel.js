@@ -50,6 +50,12 @@ export const createWheel= (segment, risk, color) => {
                     transform: `rotate(${(360/segment) * (j-1)}deg)`
                 }} className='segment1'>
                 </div>
+
+                degree.push({
+                    color: 'white',
+                    deg: (j-1)*(360/segment),
+                    winValue: 0
+                })
             }
         }
 
@@ -64,6 +70,12 @@ export const createWheel= (segment, risk, color) => {
                     transform: `rotate(${(360/segment) * j}deg)`
                 }} className='segment1'>
                 </div>
+                
+                degree.push({
+                    color: 'purple',
+                    deg: (j*(360/segment)),
+                    winValue: 0.00085 //1.5
+                })
 
                 j= 2*(segment/whiteSegment) * (segmentCount+1);
                 segmentCount++;
@@ -87,6 +99,12 @@ export const createWheel= (segment, risk, color) => {
                     transform: `rotate(${(360/segment) * (j-1)}deg)`
                 }} className='segment1'>
                 </div>
+
+                degree.push({
+                    color: 'darkGold',
+                    deg: (j-1)*(360/segment),
+                    winValue: 0.0011 //2
+                })  
             }
         }
     }
@@ -104,6 +122,12 @@ export const createWheel= (segment, risk, color) => {
                     transform: `rotate(${(360/segment) * (i-1)}deg)`
                 }} className='segment1'>
                 </div>
+
+                degree.push({
+                    color: 'warning',
+                    deg: (i-1)*(360/segment),
+                    winValue: 0
+                })
             }
 
             else 
@@ -115,6 +139,12 @@ export const createWheel= (segment, risk, color) => {
                     transform: `rotate(${(360/segment) * (i-1)}deg)`
                 }} className='segment1'>
                 </div>
+
+                degree.push({
+                    color: 'white',
+                    deg: (i-1)*(360/segment),
+                    winValue: 0
+                })
             }
         }
     }
@@ -132,6 +162,12 @@ export const createWheel= (segment, risk, color) => {
                     transform: `rotate(${(360/segment) * (j-1)}deg)`
                 }} className='segment1'>
                 </div>
+
+                degree.push({
+                    color: 'white',
+                    deg: (j-1)*(360/segment),
+                    winValue: 0
+                })
             }
        }
 
@@ -146,6 +182,13 @@ export const createWheel= (segment, risk, color) => {
                     transform: `rotate(${(360/segment) * (k-1)}deg)`
                 }} className='segment1'>
                 </div>
+
+                degree.push({
+                    color: 'purple',
+                    deg: (k-1)*(360/segment),
+                    winValue: 0.00085
+                })
+
                 count++;
             }
 
@@ -167,7 +210,14 @@ export const createWheel= (segment, risk, color) => {
                     transform: `rotate(${(360/segment) * (m-1)}deg)`
                 }} className='segment1'>
                 </div>
-                count= 1;
+
+                  degree.push({
+                    color: 'darkGold',
+                    deg: (m-1)*(360/segment),
+                    winValue: 0.0011
+                })
+
+                count= 1; 
             }
 
             if (array[m]=== 0 && count=== 1)
@@ -179,6 +229,13 @@ export const createWheel= (segment, risk, color) => {
                     transform: `rotate(${(360/segment) * (m-1)}deg)`
                 }} className='segment1'>
                 </div>
+
+                  degree.push({
+                    color: 'gold',
+                    deg: (m-1)*(360/segment),
+                    winValue: 0.0017
+                })
+
                 count= 2;
             }
 
@@ -191,11 +248,20 @@ export const createWheel= (segment, risk, color) => {
                     transform: `rotate(${(360/segment) * (m-1)}deg)`
                 }} className='segment1'>
                 </div>
+
+                 degree.push({
+                    color: 'warning',
+                    deg: (m-1)*(360/segment),
+                    winValue: 0.0023
+                })
+
                 count= 0;
             }
        } 
     }
+
     return {
         wheelData: array
+        //degree: 
    }
 }
