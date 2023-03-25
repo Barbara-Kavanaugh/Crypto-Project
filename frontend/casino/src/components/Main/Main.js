@@ -125,6 +125,69 @@ const Main = () => {
                 </div>
               </div>
             </div>
+            <div className='result'>
+                  {
+                    risk=== 'Low' && <>
+                      <div className='show_result low'>
+                          <div className='span'>0.00 ETH</div>
+                          <div className={colorResponse=== 'white' ? 'white winColor bg-100' : 'white winColor'}></div>
+                      </div>
+
+                      <div className='show_result low'>
+                          <div className='span'>0.00085 ETH</div>
+                          <div className={colorResponse=== 'purple' ? 'purple winColor bg-100' : 'purple winColor'}></div>
+                      </div>
+
+                      <div className='show_result low'>
+                          <div className='span'>0.0011 ETH</div>
+                          <div className={colorResponse=== 'darkGold' ? 'darkGold winColor bg-100' : 'darkGold winColor'}></div>
+                      </div>
+                    </>
+                  }
+
+                  {
+                    risk=== 'Medium' && <>
+                      <div className='show_result medium'>
+                          <div className='span'>0.00 ETH</div>
+                          <div className={colorResponse=== 'white' ? 'white winColor bg-100' : 'white winColor'}></div>
+                      </div>
+
+                      <div className='show_result medium'>
+                          <div className='span'>0.0017 ETH</div>
+                          <div className={colorResponse=== 'gold' ? 'gold winColor bg-100' : 'gold winColor'}></div>
+                      </div>
+
+                      <div className='show_result medium'>
+                          <div className='span'>0.00085 ETH</div>
+                          <div className={colorResponse=== 'purple' ? 'purple winColor bg-100' : 'purple winColor'}></div>
+                      </div>
+                      
+                      <div className='show_result medium'>
+                          <div className='span'>0.0011 ETH</div>
+                          <div className={colorResponse=== 'darkGold' ? 'darkGold winColor bg-100' : 'darkGold winColor'}></div>
+                      </div>
+
+                      <div className='show_result medium'>
+                          <div className='span'>0.0023 ETH</div>
+                          <div className={colorResponse=== 'warning' ? 'warning winColor bg-100' : 'warning winColor'}></div>
+                      </div>
+                    </>
+                  }
+
+                  {
+                    risk=== 'High' && <>
+                     <div className='show_result high'>
+                        <div className='span'>0.00 ETH</div>
+                        <div className={colorResponse=== 'white' ? 'white winColor bg-100' : 'white winColor'}></div>
+                      </div>
+           
+                      <div className='show_result high'>
+                            <div className='span'>0.003 ETH</div>
+                            <div className={colorResponse=== 'warning' ? 'warning winColor bg-100' : 'warning winColor'}></div>
+                      </div>
+                    </>
+                  }
+            </div>
           </div>
         </div>
       </div>

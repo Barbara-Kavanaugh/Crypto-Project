@@ -38,6 +38,41 @@
                     }
                 }
 
+                .result {
+                    margin-top: 30px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    
+                    .show_result.active {
+                        background-color: #8000ff;
+                    }
+
+                    .show_result.low {
+                        padding: 6px 60px;
+                    }
+
+                    .show_result.medium {
+                        padding: 6px 34px;
+                    }
+
+                    .show_result.high {
+                        padding: 6px 93px;
+                    }
+
+                    .show_result {
+                        color: white;
+                        font-size: 18px;
+                        margin: 0px -10px;
+                        border-radius: 3px;
+                        position: relative;
+                        height: 58px;
+                        background-color: #7f4abe;
+
+                
+                    }
+                }
+
                 .temp {
                     display: flex;
                     justify-content: center;
