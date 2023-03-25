@@ -73,6 +73,30 @@
                         }
                     }
                 }
+
+                .mid {
+                   width: 280px;
+                   height:  280px;
+                   background-color: #3e196d;
+                   border-radius: 50%;
+                   position: absolute;
+                   display: flex;
+                   justify-content: center;
+                   align-items: center;
+
+                   .circle {
+                    width: 130px;
+                    height: 130px;
+                    border: 1px solid;
+                    border-radius: 50%;
+                    border-color: #60487e;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: 600;
+                    font-size: 25px;
+                   }
+                }
             }
         }
 

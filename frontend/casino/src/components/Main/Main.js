@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Main.scss';
 import { createWheel } from '../../utils/createWheel';
+import { wheelController } from '../../utils/wheelController';
 
 const Main = () => {
   const wheelRef= useRef()
@@ -18,6 +19,11 @@ const Main = () => {
   const [segment, setSegment]= useState('10');
   const [deg, setDeg]= useState(0);
   const [coordinate, setCoordinate]= useState("");
+  
+  let [win, setWin]= useState(null);
+  let [showWin, setShowWin]= useState(null);
+  let [buttonResponse, setButtonResponse]= useState(false);
+  let [colorResponse, setColorResponse]= useState('');
 
   const initialWheel = () => {
     return createWheel(segment, risk, colorScheme);
@@ -39,6 +45,23 @@ const Main = () => {
       setDeg(randomDegree);
     }
   }
+
+  useEffect(() => {
+    if (wheelRef.current && deg) {
+      wheelRef.current.ontransitionend= () => {
+        wheelRef.current.style.transition= 'none';
+
+        let actualDegree= deg%360;
+        const winData= wheelController(coordinate, actualDegree, segment);
+        setWin(winData?.winValue);
+        setColorResponse(winData?.winColor);
+        setShowWin(winData?.winValue);
+        
+        wheelRef.current.style.transform= `rotate(${actualDegree}deg)`;
+      }
+    }
+
+  }, [deg]);
 
   return (
     <div className='main-area'>
@@ -94,6 +117,13 @@ const Main = () => {
                   [...wheel]
                 }
               </div> 
+              <div className='mid'>
+                <div className='circle'>
+                  {
+                    showWin!== null && <span style={{color: `${colorScheme[colorResponse]}`}}>{showWin}</span>
+                  }
+                </div>
+              </div>
             </div>
           </div>
         </div>
