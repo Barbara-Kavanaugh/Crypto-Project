@@ -3,12 +3,36 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { getDefaultWallets } from '@rainbow-me/rainbowkit';
+import { publicProvider } from 'wagmi/providers/public';
+import { polygonMumbai } from 'wagmi/chains';
+import { 
+  configureChains,
+  createClient,
+  WagmiConfig
+} from 'wagmi';
+
+const { chains, provider }= configureChains(
+  [polygonMumbai],
+  [publicProvider()]
+);
+
+const { connectors }= getDefaultWallets({
+  appName: 'casino',
+  polygonMumbai
+});
+
+const wagmiClient= createClient({
+  autoConnect: true,
+  connectors,
+  provider
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <WagmiConfig client={wagmiClient}>
+    <App chains={chains} provider={provider} />
+  </WagmiConfig>
 );
 
 // If you want to start measuring performance in your app, pass a function

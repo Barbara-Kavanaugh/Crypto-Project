@@ -16,6 +16,7 @@ contract VRFv2Consumer is VRFConsumerBaseV2, ConfirmedOwner {
 
     uint public gameId;
     uint256 public lastGameId;
+    address payable public owner;
 
     struct Spin {
         uint requestId;
@@ -25,6 +26,10 @@ contract VRFv2Consumer is VRFConsumerBaseV2, ConfirmedOwner {
         string spinResult;
         uint spinRandomNumber;
     }
+
+    event Result(uint256 id, string bet, uint amount, address player, string winColor, uint256 randomResult);
+    event Recieved(address indexed sender, uint256 amount);
+    event Withdraw(address admin, uint256 amount);
 
     mapping(uint=> Spin) public spins;
 
@@ -67,6 +72,7 @@ contract VRFv2Consumer is VRFConsumerBaseV2, ConfirmedOwner {
             0x2Ca8E0C643bDe4C2E08ab1fA0da3401AdAD7734D
         );
         s_subscriptionId = subscriptionId;
+        owner= payable(msg.sender);
     }
 
     function spin (string memory bet) public payable {
@@ -124,8 +130,34 @@ contract VRFv2Consumer is VRFConsumerBaseV2, ConfirmedOwner {
                 winAmount= spins[i].amount*2;
                 spins[i].player.transfer(winAmount);
             }
-        }
 
+            if (randomResult<= 18 && randomResult!= 0) {
+                winColor= "red";
+            }
+
+            if (randomResult>= 19) {
+                winColor= "black";
+            }
+
+            if (randomResult== 0) {
+                winColor= "green";
+            }
+
+            spins[i]= Spin(i, Spin[i].bet, Spin[i].amount, Spin[i].player, winColor, randomResult);
+            emit Result(i, Spin[i].bet, winAmount, Spin[i].player, winColor, randomResult);
+        }
+        lastGameId= gameId;
+        return lastGameId;
+    }
+
+    receive() external payable {
+        emit Recieved(msg.sender, msg.value);
+    }
+
+    function withdrawEther(uint256 amount) public {
+        require(address(this).balance>= amount, "Funds Not Available");
+        owner.transfer(amount);
+        emit Withdraw(owner, amount);
     }
 
     function getRequestStatus(
