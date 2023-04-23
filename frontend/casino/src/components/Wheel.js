@@ -11,7 +11,7 @@ export default ((props) => {
 
     return (
         <>
-            <Wheel data={data} textColors={'#ffffff'} />
+            <Wheel style={{ margin: '20px auto' }} data={data} textColors={'#ffffff'} />
         </>
     );
 });
