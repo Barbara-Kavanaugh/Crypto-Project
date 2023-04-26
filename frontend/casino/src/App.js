@@ -48,6 +48,8 @@ function App(props) {
       return;
     }
     setLoading(true);
+
+     //let cryptoCrash= new ethers.Contract();
   }
 
   return (
