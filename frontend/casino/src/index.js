@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { getDefaultWallets } from '@rainbow-me/rainbowkit';
 import { publicProvider } from 'wagmi/providers/public';
-import { polygonMumbai } from 'wagmi/chains';
+import { goerli } from 'wagmi/chains';
 import { 
   configureChains,
   createClient,
@@ -13,13 +13,13 @@ import {
 } from 'wagmi';
 
 const { chains, provider }= configureChains(
-  [polygonMumbai],
+  [goerli],
   [publicProvider()]
 );
 
 const { connectors }= getDefaultWallets({
   appName: 'casino',
-  polygonMumbai
+  goerli
 });
 
 const wagmiClient= createClient({

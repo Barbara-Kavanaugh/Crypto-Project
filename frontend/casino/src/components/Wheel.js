@@ -1,3 +1,4 @@
+import { Spinner } from '@chakra-ui/react';
 import React from 'react';
 import { Wheel } from 'react-custom-roulette';
 
@@ -9,9 +10,25 @@ export default ((props) => {
         data.push({ option: 18 + i, style: { backgroundColor: 'black' } });
     }
 
+    let explorerUrl= `https://goerli.etherscan.io/${props.transactionHash}`;
+
+    if (props.loading) {
+        return (
+            <div className="spinnerContainer">
+                <Spinner color="red" thickness='7px' size='xl' />
+                <br />
+                <br />
+                {props.loadingMessage}
+                {props.transactionHash ? <a style={{ fontWeight: 'bold' }} href={explorerUrl} target="_blank">View Transaction</a> : <></>}
+            </div>
+        )
+    }
+
     return (
         <>
-            <Wheel style={{ margin: '20px auto' }} data={data} textColors={'#ffffff'} />
+            <Wheel prizeNumber={props.prizeNumber} style={{ margin: '20px auto', color: 'white' }} data={data} textColors={'white'}>
+                mustStartSpinning={props.startSpinning}
+            </Wheel>
         </>
     );
 });

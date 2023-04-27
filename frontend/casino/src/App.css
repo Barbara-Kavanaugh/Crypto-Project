@@ -23,4 +23,10 @@
   position: relative;
 }
 
+.spinnerContainer {
+  height: 500px;
+  padding-top: 30%;
+  text-align: center;
+}
+
 
